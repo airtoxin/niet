@@ -10,6 +10,10 @@ export default branch(class ServerMenuComponent extends BaseComponent {
             players: ["alice", "bob"]
         };
     }
+
+    onClickGameStart() {
+        this.props.actions.transitGlobalState("game");
+    }
 }, {
     cursors: {
         serverAddress: ["server", "address"]

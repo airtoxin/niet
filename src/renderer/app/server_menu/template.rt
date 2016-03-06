@@ -3,4 +3,6 @@
     <input type="text" value={this.props.serverAddress} disabled="disabled">
     <label>players</label>
     <input type="text" rt-repeat="player in this.state.players" value={player} key={player} disabled="disabled">
+
+    <button type="button" onClick="() => this.onClickGameStart()">game start</button>
 </div>

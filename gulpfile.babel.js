@@ -4,53 +4,45 @@ import rt from "gulp-react-templates";
 import rimraf from "rimraf";
 import runSequence from "run-sequence";
 import jsonfile from "jsonfile";
+import path from "path";
 
+const babelrc = jsonfile.readFileSync(".babelrc");
 const sources = {
-    js: "src/**/*.js",
-    html: "src/**/*.html",
-    rt: "src/**/*.rt",
-    json: "src/**/*.json"
+    js: [babel(babelrc)],
+    html: [],
+    rt: [rt({modules: "commonjs", targetVersion: "0.14.0"})],
+    json: []
 };
+
+for (const ext of Object.keys(sources)) {
+    const taskname = `build:${ext}`;
+
+    gulp.task(taskname, () => {
+        let src = gulp.src(`src/**/*.${ext}`);
+        for (const proc of sources[ext]) {
+            src = src.pipe(proc);
+        }
+        src.pipe(gulp.dest("dist"));
+    });
+}
 
 gulp.task("clean", (cb) => {
     rimraf("dist", cb);
 });
 
-gulp.task("build:js", () => {
-    const babelrc = jsonfile.readFileSync(".babelrc");
-    return gulp.src(sources.js)
-        .pipe(babel(babelrc))
-        .pipe(gulp.dest("dist"));
-});
-gulp.task("build:html", () => {
-    return gulp.src(sources.html)
-        .pipe(gulp.dest("dist"));
-});
-gulp.task("build:rt", () => {
-    return gulp.src(sources.rt)
-        .pipe(rt({
-            modules: "commonjs",
-            targetVersion: "0.14.0"
-        }))
-        .pipe(gulp.dest("dist"))
-});
-gulp.task("build:json", () => {
-    return gulp.src(sources.json)
-        .pipe(gulp.dest("dist"));
-})
-
 gulp.task("build", () => {
+    const tasks = Object.keys(sources).map((ext) => `build:${ext}`);
     return runSequence(
         "clean",
-        ["build:js", "build:html", "build:rt", "build:json"]
+        tasks
     );
 });
 
 gulp.task("watch", () => {
-    gulp.watch(sources.js, ["build:js"]);
-    gulp.watch(sources.html, ["build:html"]);
-    gulp.watch(sources.rt, ["build:rt"]);
-    gulp.watch(sources.json, ["build:json"]);
+    for (const ext of Object.keys(sources)) {
+        const taskname = `build:${ext}`;
+        gulp.watch(`src/**/*.${ext}`, [taskname]);
+    }
 });
 
 gulp.task("default", ["build", "watch"]);

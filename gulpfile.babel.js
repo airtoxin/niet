@@ -5,6 +5,7 @@ import rimraf from "rimraf";
 import runSequence from "run-sequence";
 import jsonfile from "jsonfile";
 import path from "path";
+import {exec} from "child_process";
 
 const babelrc = jsonfile.readFileSync(".babelrc");
 const sources = {
@@ -33,17 +34,25 @@ gulp.task("clean", (cb) => {
 });
 
 gulp.task("build", () => {
-    const tasks = Object.keys(sources).map((ext) => `build:${ext}`);
+    const buildTasks = Object.keys(sources).map((ext) => `build:${ext}`);
     return runSequence(
         "clean",
-        tasks
+        buildTasks,
+        "link-local"
     );
+});
+
+gulp.task("link-local", (cb) => {
+    exec("npm install -S dist/renderer/base_component/", cb);
 });
 
 gulp.task("watch", () => {
     for (const ext of Object.keys(sources)) {
         gulp.watch(`src/**/*.${ext}`, [`build:${ext}`]);
     }
+
+    // local link modules
+    gulp.watch("dist/renderer/base_component/*", ["link-local"]);
 });
 
 gulp.task("default", ["build", "watch"]);

@@ -15,3 +15,9 @@ export const runGameServer = (tree) => {
 export const transitGlobalState = (tree, stateName) => {
     tree.set("globalState", stateName);
 };
+
+export const connectToServer = (tree, address) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => resolve(), 1000);
+    });
+};

@@ -1,1 +1,8 @@
-<div>client</div>
+<div>
+    <p rt-if="this.state.serverConnected">server address: {this.state.serverAddress}</p>
+    <div rt-if="!this.state.serverConnected">
+        <label>server address</label>
+        <input type="text" value={this.state.serverAddress} onChange="(e) => this.onChangeServerAddress(e)">
+        <button type="button" onClick="() => this.onClickConnect()">connect</button>
+    </div>
+</div>

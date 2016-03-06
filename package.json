@@ -8,6 +8,7 @@
     "baobab-react": "1.0.1",
     "base-component": "file:dist/renderer/base_component",
     "elekiter": "0.0.6",
+    "express": "4.13.4",
     "lodash": "4.6.1",
     "react": "0.14.7",
     "react-dom": "0.14.7"

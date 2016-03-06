@@ -1,6 +1,7 @@
 import app from "app";
 import BrowserWindow from "browser-window";
 import Elekiter from "elekiter";
+import * as browserProcess from "./browser";
 
 const elekiter = new Elekiter();
 
@@ -14,5 +15,5 @@ app.on("ready", () => {
 });
 
 elekiter.get("run-server", (req, res) => {
-    setTimeout(() => res.ok(), 1000);
+    browserProcess.runServer(res.ok);
 });

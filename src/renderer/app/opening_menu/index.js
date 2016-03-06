@@ -8,11 +8,13 @@ export default branch(class OpeningComponent extends BaseComponent {
     }
 
     onClickServer() {
-        this.props.actions.runGameServer();
+        this.props.actions.runGameServer().then(() => {
+            this.props.actions.transitGlobalState("serverMode");
+        });
     }
 
     onClickClient() {
-        this.props.actions.startGame();
+        this.props.actions.transitGlobalState("clientMode");
     }
 }, {
     actions: BaseComponent.actions

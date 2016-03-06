@@ -1,4 +1,5 @@
 <div>
-    <this.Opening rt-if="!this.props.gameStarted"></this.Opening>
-    <this.Game rt-if="this.props.gameStarted"></this.Game>
+    {this.props.globalState}
+    <this.OpeningMenu rt-if="this.props.globalState === 'openingMenu'"></this.OpeningMenu>
+    <this.Game rt-if="this.props.globalState === 'game'"></this.Game>
 </div>

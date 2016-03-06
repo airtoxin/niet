@@ -1,12 +1,18 @@
 import BaseComponent from "base-component";
+import {branch} from "baobab-react/higher-order";
 import Template from "./template.rt";
+import Opening from "./opening";
+import Game from "./game";
 
-export default class App extends BaseComponent {
+export default branch(class App extends BaseComponent {
     constructor(...args) {
         super(Template, ...args);
 
-        this.state = {
-            name: "alice"
-        };
+        this.Opening = Opening;
+        this.Game = Game;
     }
-}
+}, {
+    cursors: {
+        gameStarted: ["gameStarted"]
+    }
+});

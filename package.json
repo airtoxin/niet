@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "base-component": "file:dist/base_component",
+    "baobab": "2.3.3",
+    "baobab-react": "1.0.1",
+    "base-component": "file:dist/renderer/base_component",
     "lodash": "4.6.1",
     "react": "0.14.7",
     "react-dom": "0.14.7"

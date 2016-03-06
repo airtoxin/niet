@@ -1,0 +1,4 @@
+<div>
+    <button>Server mode</button>
+    <button onClick="() => this.onClickClient()">client mode</button>
+</div>

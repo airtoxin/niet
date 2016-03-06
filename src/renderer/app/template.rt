@@ -1,1 +1,4 @@
-<h1>Hello! {this.state.name}</h1>
+<div>
+    <this.Opening rt-if="!this.props.gameStarted"></this.Opening>
+    <this.Game rt-if="this.props.gameStarted"></this.Game>
+</div>

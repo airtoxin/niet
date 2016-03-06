@@ -1,1 +1,8 @@
-console.log("@11111", 11111);
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./app";
+
+ReactDOM.render(
+    <App/>,
+    document.getElementById("app")
+);

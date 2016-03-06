@@ -7,6 +7,10 @@ export default branch(class OpeningComponent extends BaseComponent {
         super(Template, ...args);
     }
 
+    onClickServer() {
+        this.props.actions.runGameServer();
+    }
+
     onClickClient() {
         this.props.actions.startGame();
     }

@@ -5,7 +5,14 @@ import Template from "./template.rt";
 export default branch(class ServerMenuComponent extends BaseComponent {
     constructor(...args) {
         super(Template, ...args);
+
+        this.state = {
+            players: ["alice", "bob"]
+        };
     }
 }, {
+    cursors: {
+        serverAddress: ["server", "address"]
+    },
     actions: BaseComponent.actions
 });

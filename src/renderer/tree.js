@@ -1,5 +1,9 @@
 import Baobab from "baobab";
 
 export default new Baobab({
-    globalState: "openingMenu"
+    globalState: "openingMenu",
+    server: {
+        address: "",
+        port: ""
+    }
 });

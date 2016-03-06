@@ -1,1 +1,6 @@
-<div>server</div>
+<div>
+    <label>server address</label>
+    <input type="text" value={this.props.serverAddress} disabled="disabled">
+    <label>players</label>
+    <input type="text" rt-repeat="player in this.state.players" value={player} key={player} disabled="disabled">
+</div>

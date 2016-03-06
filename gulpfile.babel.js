@@ -8,21 +8,23 @@ import path from "path";
 
 const babelrc = jsonfile.readFileSync(".babelrc");
 const sources = {
-    js: [babel(babelrc)],
+    js: [
+        () => babel(babelrc)
+    ],
     html: [],
-    rt: [rt({modules: "commonjs", targetVersion: "0.14.0"})],
+    rt: [
+        () => rt({modules: "commonjs", targetVersion: "0.14.0"})
+    ],
     json: []
 };
 
 for (const ext of Object.keys(sources)) {
-    const taskname = `build:${ext}`;
-
-    gulp.task(taskname, () => {
+    gulp.task(`build:${ext}`, () => {
         let src = gulp.src(`src/**/*.${ext}`);
-        for (const proc of sources[ext]) {
-            src = src.pipe(proc);
+        for (const transform of sources[ext]) {
+            src = src.pipe(transform());
         }
-        src.pipe(gulp.dest("dist"));
+        return src.pipe(gulp.dest("dist"));
     });
 }
 
@@ -40,8 +42,7 @@ gulp.task("build", () => {
 
 gulp.task("watch", () => {
     for (const ext of Object.keys(sources)) {
-        const taskname = `build:${ext}`;
-        gulp.watch(`src/**/*.${ext}`, [taskname]);
+        gulp.watch(`src/**/*.${ext}`, [`build:${ext}`]);
     }
 });
 

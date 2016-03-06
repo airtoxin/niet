@@ -1,9 +1,12 @@
-import React from "react";
+import BaseComponent from "base-component";
+import Template from "./template.rt";
 
-export default class App extends React.Component {
-    render() {
-        return (
-            <h1>Hello!</h1>
-        );
+export default class App extends BaseComponent {
+    constructor(...args) {
+        super(Template, ...args);
+
+        this.state = {
+            name: "alice"
+        };
     }
 }

@@ -8,9 +8,7 @@ export default branch(class OpeningMenuComponent extends BaseComponent {
     }
 
     onClickServer() {
-        this.props.actions.runGameServer().then(() => {
-            this.props.actions.transitGlobalState("serverMenu");
-        });
+        this.props.actions.transitGlobalState("serverMenu");
     }
 
     onClickClient() {

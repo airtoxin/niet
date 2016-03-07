@@ -1,0 +1,5 @@
+<div>
+    <label>player name</label>
+    <input type="text" value={this.state.input} onChange="(e) => this.onChange(e)">
+    <button type="button" onClick="() => this.onClickRunServer()" disabled={!this.state.input}>run server</button>
+</div>

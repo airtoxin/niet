@@ -1,8 +1,12 @@
 <div>
-    <label>server address</label>
-    <input type="text" value={this.props.serverAddress} disabled="disabled">
-    <label>players</label>
-    <input type="text" rt-repeat="player in this.state.players" value={player} key={player} disabled="disabled">
+    <this.PlayerNameInput rt-if="!this.props.serverRunning"></this.PlayerNameInput>
+    <div rt-if="this.props.serverRunning">
+        <p>Your name: {this.props.playerName}</p>
+        <p>Server address: {this.props.serverAddress}</p>
 
-    <button type="button" onClick="() => this.onClickGameStart()">game start</button>
+        <label>players</label>
+        <input type="text" rt-repeat="player in this.state.players" value={player} key={player} disabled="disabled">
+
+        <button type="button" onClick="() => this.onClickGameStart()">game start</button>
+    </div>
 </div>

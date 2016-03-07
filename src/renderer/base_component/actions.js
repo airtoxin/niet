@@ -1,6 +1,11 @@
 import Elekiter from "elekiter";
+import socketIoClient from "socket.io-client";
 
 const elekiter = new Elekiter();
+
+export const setGlobalMode = (tree, mode) => {
+    tree.set("globalMode", mode);
+};
 
 export const runGameServer = (tree) => {
     return new Promise((resolve, reject) => {
@@ -18,8 +23,13 @@ export const transitGlobalState = (tree, stateName) => {
 };
 
 export const connectToServer = (tree, address) => {
+    const port = tree.get(["constants", "server", "port"]);
     return new Promise((resolve, reject) => {
-        setTimeout(() => resolve(), 1000);
+        const client = socketIoClient(`http://${address}:${port}`);
+        client.on("connect", () => {
+            console.log("@1", 1);
+            resolve();
+        });
     });
 };
 

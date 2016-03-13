@@ -26,10 +26,8 @@ export const connectToServer = (tree, address) => {
     const port = tree.get(["constants", "server", "port"]);
     return new Promise((resolve, reject) => {
         const client = socketIoClient(`http://${address}:${port}`);
-        client.on("connect", () => {
-            console.log("@1", 1);
-            resolve();
-        });
+        client.on("connect", resolve);
+        client.on("connect_error", reject);
     });
 };
 

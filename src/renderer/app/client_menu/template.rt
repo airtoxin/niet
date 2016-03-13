@@ -1,8 +1,11 @@
 <div>
-    <p rt-if="this.state.serverConnected">server address: {this.state.serverAddress}</p>
-    <div rt-if="!this.state.serverConnected">
+    {this.state.connectionStatus}
+    <p rt-if="this.state.connectionStatus === this.status.connected">server address: {this.state.serverAddress}</p>
+    <div rt-if="this.state.connectionStatus === this.status.disconnect || this.state.connectionStatus === this.status.failed">
         <label>server address</label>
         <input type="text" value={this.state.serverAddress} onChange="(e) => this.onChangeServerAddress(e)">
         <button type="button" onClick="() => this.onClickConnect()">connect</button>
     </div>
+    <p rt-if="this.state.connectionStatus === this.status.connecting">connecting...</p>
+    <p rt-if="this.state.connectionStatus === this.status.failed">connection failed</p>
 </div>

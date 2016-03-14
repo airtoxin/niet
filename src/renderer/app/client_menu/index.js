@@ -27,7 +27,6 @@ export default branch(class ClientMenuComponent extends BaseComponent {
 
         this.props.actions.connectToServer(this.state.serverAddress).then(() => {
             this.setState({connectionStatus: this.status.connected});
-            this.props.actions.transitGlobalState("game");
         }).catch(() => {
             this.setState({connectionStatus: this.status.failed});
         });

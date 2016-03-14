@@ -10,7 +10,6 @@ export default new Baobab({
     },
     server: {
         running: false,
-        address: "",
-        port: ""
+        address: ""
     }
 });

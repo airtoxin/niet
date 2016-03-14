@@ -12,7 +12,6 @@ export const runGameServer = (tree) => {
         elekiter.request("run-server").then(([address, port]) => {
             tree.set(["server", "running"], true);
             tree.set(["server", "address"], address);
-            tree.set(["server", "port"], port);
             resolve();
         }).catch(reject);
     });

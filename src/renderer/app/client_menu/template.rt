@@ -1,5 +1,4 @@
 <div>
-    {this.state.connectionStatus}
     <p rt-if="this.state.connectionStatus === this.status.connected">server address: {this.state.serverAddress}</p>
     <div rt-if="this.state.connectionStatus === this.status.disconnect || this.state.connectionStatus === this.status.failed">
         <label>server address</label>

@@ -12,7 +12,7 @@ export const runGameServer = (tree) => {
         elekiter.request("run-server").then(([address, port]) => {
             tree.set(["server", "running"], true);
             tree.set(["server", "address"], address);
-            resolve();
+            connectToServer(tree, address).then(resolve).catch(reject);
         }).catch(reject);
     });
 };
@@ -25,7 +25,9 @@ export const connectToServer = (tree, address) => {
     const port = tree.get(["constants", "server", "port"]);
     return new Promise((resolve, reject) => {
         const client = socketIoClient(`http://${address}:${port}`);
-        client.on("connect", resolve);
+        client.on("connect", () => {
+            resolve();
+        });
         client.on("connect_error", reject);
     });
 };

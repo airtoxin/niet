@@ -1,13 +1,13 @@
 import BaseComponent from "base-component";
 import {branch} from "baobab-react/higher-order";
 import Template from "./template.rt";
-import PlayerNameInput from "./player_name_input";
+import SetupServer from "./setup_server";
 
 export default branch(class ServerMenuComponent extends BaseComponent {
     constructor(...args) {
         super(Template, ...args);
 
-        this.PlayerNameInput = PlayerNameInput;
+        this.SetupServer = SetupServer;
 
         this.state = {
             players: ["alice", "bob"]

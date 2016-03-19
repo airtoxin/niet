@@ -2,7 +2,7 @@ import BaseComponent from "base-component";
 import {branch} from "baobab-react/higher-order";
 import Template from "./template.rt";
 
-export default branch(class PlayerNameInputComponent extends BaseComponent {
+export default branch(class SetupServerComponent extends BaseComponent {
     constructor(...args) {
         super(Template, ...args);
 

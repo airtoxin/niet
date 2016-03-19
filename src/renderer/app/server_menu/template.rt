@@ -1,5 +1,5 @@
 <div>
-    <this.PlayerNameInput rt-if="!this.props.serverRunning"></this.PlayerNameInput>
+    <this.SetupServer rt-if="!this.props.serverRunning"></this.SetupServer>
     <div rt-if="this.props.serverRunning">
         <p>Your name: {this.props.playerName}</p>
         <p>Server address: {this.props.serverAddress}</p>

@@ -9,7 +9,7 @@
     "base-component": "file:dist/renderer/base_component",
     "elekiter": "0.0.6",
     "express": "4.13.4",
-    "lodash": "4.6.1",
+    "lodash": "4.17.21",
     "my-ip": "1.1.1",
     "react": "0.14.7",
     "react-dom": "0.14.7",
